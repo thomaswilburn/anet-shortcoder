@@ -39,30 +39,19 @@ class ShortCoder {
             $setup = $this->options->$tag;
         }
 
-        if ($content == "" && !is_array($setup->template)) {
-            //return the template specified
-            return $this->loadTemplate($setup->template, $attributes);
-        } else {
-            //find start and end templates, wrap content in them
-            $output = $this->loadTemplate($setup->template[0], $attributes);
-            array_unshift($this->stack, $tag);
-            $output .= do_shortcode($content);
-            array_shift($this->stack);
-            $output .= $this->loadTemplate($setup->template[1], $attributes);
-            return $output;
-        }
+        //push the current tag onto the stack
+        array_unshift($this->stack, $tag);
+        //if there's content, run its shortcodes, then load the template
+        if (!is_null($content) && $content != "") $content = do_shortcode($content);
+        $output = $this->loadTemplate($setup->template, $attributes, $content);
+        array_shift($this->stack);
+        return $output;
     }
 
-    public function loadTemplate($location, $attributes = null) {
+    public function loadTemplate($location, $attributes = null, $content = "") {
         ob_start();
         include(__DIR__.'/templates/'.$location);
         $buffer = ob_get_contents();
-        // replace any attributes tagged mustache-style in the template
-        if ($attributes) foreach ($attributes as $att => $value) {
-            $buffer = str_replace('{{'.$att.'}}', $value, $buffer);
-        }
-        // remove hanging tags
-        $buffer = preg_replace('#{{[^}]+}}#', '', $buffer);
         ob_end_clean();
         return $buffer;
     }

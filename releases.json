@@ -1,6 +1,5 @@
 {
     "wallpaper": {
-        "selfClosing": true,
         "template": "releases/wallpaper.tmpl"
     }
 }
