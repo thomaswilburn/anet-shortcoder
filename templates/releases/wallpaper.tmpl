@@ -1,0 +1,16 @@
+<div class="wallpaper overlay-item media-item frame yui3-u">
+    <img src="{{thumb}}" alt="" width="{{width}}" height="{{height}}">
+    <ul class="resolutions overlay yui3-g">
+        <?php 
+        $resolutions = array(
+            '800x600', '1024x768', '1280x960', '1280x1024', '1600x1200',
+            '1280x720', '1280x800', '1440x900', '1680x1050', '1920x1080', '1920x1200'
+        );
+
+        foreach($resolutions as $resolution) : ?>
+        <li class="resolution yui3-u-1-2">
+            <a href="https://s3.amazonaws.com/guildwars2.com_uploads/wp-content/uploads/wallpapers/{{base}}-<?php echo $resolution; ?>.jpg" target="_blank"><?php echo $resolution; ?></a>
+        </li>
+        <?php endforeach; ?>
+    </ul>
+</div>

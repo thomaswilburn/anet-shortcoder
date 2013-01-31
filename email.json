@@ -1,0 +1,16 @@
+{
+    "two_column": {
+        "selfClosing": false,
+        "template": ["email/two_column_start.tmpl", "email/two_column_end.tmpl"],
+        "modifies": {
+            "break": {
+                "selfClosing": true,
+                "template": "email/two_column_break.tmpl"
+            }
+        }
+    },
+    "break": {
+        "selfClosing": true,
+        "template": "email/column_break.tmpl"
+    }
+}
