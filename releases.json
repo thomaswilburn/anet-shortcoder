@@ -1,5 +1,9 @@
 {
     "wallpaper": {
         "template": "releases/wallpaper.tmpl"
+    },
+
+    "thumbnail_paragraph": {
+        "template": "releases/thumb_paragraph.tmpl"
     }
 }

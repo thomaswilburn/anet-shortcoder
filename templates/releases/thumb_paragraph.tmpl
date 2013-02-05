@@ -1,0 +1,32 @@
+<?php
+    $right = isset($attributes["align"]) && $attributes["align"] == "right";
+    $rightClass = $right ? "right" : "";
+    $screenshot = $attributes["screenshot"] || false;
+    $screenshotClass = isset($attributes["screenshot"]) ? "screenshot" : "";
+?>
+<div class="yui3-g thumbnail-paragraph <?php echo $rightClass ?>">
+<?php
+    ob_start();
+?>
+    <div class="yui3-u-1-3 thumbnail <?php echo $screenshotClass ?>">
+        <?php if ($screenshot) echo "<a href='$screenshot'>" ?>
+        <img src="<?php echo $attributes["thumb"] ?>">
+        <?php if ($screenshot) echo "</a>" ?>
+    </div>
+<?php
+    $thumbnailDiv = ob_get_contents();
+    ob_end_clean();
+    if (!$right) {
+        echo $thumbnailDiv;
+    }
+?>
+    <div class="yui3-u-2-3 paragraph">
+        <p>
+<?php echo $content; ?>
+    </div>
+<?php 
+    if ($right) {
+        echo $thumbnailDiv;
+    }
+?>
+</div>
