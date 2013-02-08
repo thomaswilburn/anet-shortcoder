@@ -1,5 +1,11 @@
+<?php
+    $thumb = $attributes['thumb'];
+    $width = isset($attributes['width']) ? $attributes['width'] : '299';
+    $height = isset($attributes['height']) ? $attributes['height'] : '183';
+    $base = $attributes['base'];
+?>
 <div class="wallpaper overlay-item media-item frame yui3-u">
-    <img src="{{thumb}}" alt="" width="{{width}}" height="{{height}}">
+    <img src="<?php echo $thumb ?>" alt="" width="<?php echo $width ?>" height="<?php echo $height ?>">
     <ul class="resolutions overlay yui3-g">
         <?php 
         $resolutions = array(
@@ -9,7 +15,7 @@
 
         foreach($resolutions as $resolution) : ?>
         <li class="resolution yui3-u-1-2">
-            <a href="https://s3.amazonaws.com/guildwars2.com_uploads/wp-content/uploads/wallpapers/{{base}}-<?php echo $resolution; ?>.jpg" target="_blank"><?php echo $resolution; ?></a>
+            <a href="//d3b4yo2b5lbfy.cloudfront.net/wp-content/uploads/wallpapers/<?php echo "$base-$resolution"; ?>.jpg" target="_blank"><?php echo $resolution; ?></a>
         </li>
         <?php endforeach; ?>
     </ul>
